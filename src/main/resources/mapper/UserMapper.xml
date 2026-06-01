@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liko.mapper.UserMapper">
+
+    <select id="findByUsername" resultType="com.liko.model.User">
+        SELECT id, couple_id, username, nickname, role, password, created_at
+        FROM user WHERE username = #{username} LIMIT 1
+    </select>
+
+    <select id="findById" resultType="com.liko.model.User">
+        SELECT id, couple_id, username, nickname, role, password, created_at
+        FROM user WHERE id = #{id}
+    </select>
+
+    <select id="findOtherInCouple" resultType="com.liko.model.User">
+        SELECT id, couple_id, username, nickname, role, password, created_at
+        FROM user WHERE couple_id = #{coupleId} AND id != #{excludeId} LIMIT 1
+    </select>
+
+</mapper>
