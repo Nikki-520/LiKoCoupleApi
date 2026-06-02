@@ -56,3 +56,17 @@ CREATE TABLE IF NOT EXISTS wish (
     FOREIGN KEY (couple_id) REFERENCES couple(id),
     FOREIGN KEY (user_id)   REFERENCES users(id)
 );
+
+CREATE TABLE IF NOT EXISTS timeline (
+    id          BIGSERIAL    PRIMARY KEY,
+    couple_id   BIGINT       NOT NULL,
+    user_id     BIGINT       NOT NULL,
+    event_date  DATE         NOT NULL,
+    title       VARCHAR(100) NOT NULL,
+    description TEXT,
+    image_url   TEXT,
+    created_at  TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (couple_id) REFERENCES couple(id),
+    FOREIGN KEY (user_id)   REFERENCES users(id)
+);
+CREATE INDEX IF NOT EXISTS idx_timeline_couple ON timeline (couple_id, event_date DESC);

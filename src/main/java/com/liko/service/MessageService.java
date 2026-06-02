@@ -24,8 +24,8 @@ public class MessageService {
         return messageMapper.findById(message.getId());
     }
 
-    public boolean markRead(Long id, Long userId) {
-        return messageMapper.markRead(id, userId) > 0;
+    public boolean markRead(Long id, Long coupleId) {
+        return messageMapper.markRead(id, coupleId) > 0;
     }
 
     public boolean delete(Long id, Long userId) {

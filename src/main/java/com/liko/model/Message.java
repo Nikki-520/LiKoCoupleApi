@@ -2,6 +2,8 @@ package com.liko.model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class Message {
     private Long id;
@@ -84,6 +86,20 @@ public class Message {
 
     public void setToName(String toName) {
         this.toName = toName;
+    }
+
+    public Map<String, Object> getFromUser() {
+        Map<String, Object> m = new LinkedHashMap<>();
+        m.put("id", fromId);
+        m.put("nickname", fromName);
+        return m;
+    }
+
+    public Map<String, Object> getToUser() {
+        Map<String, Object> m = new LinkedHashMap<>();
+        m.put("id", toId);
+        m.put("nickname", toName);
+        return m;
     }
 
     public String getFrom() {

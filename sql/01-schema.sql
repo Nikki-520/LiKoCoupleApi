@@ -105,3 +105,27 @@ COMMENT ON COLUMN wish.description IS '愿望详细描述';
 COMMENT ON COLUMN wish.is_done IS '是否已实现：false未实现 true已实现';
 COMMENT ON COLUMN wish.done_date IS '实现日期';
 COMMENT ON COLUMN wish.created_at IS '创建时间';
+
+-- 时光印记表
+CREATE TABLE IF NOT EXISTS timeline (
+    id          BIGSERIAL    PRIMARY KEY,
+    couple_id   BIGINT       NOT NULL,
+    user_id     BIGINT       NOT NULL,
+    event_date  DATE         NOT NULL,
+    title       VARCHAR(100) NOT NULL,
+    description TEXT,
+    image_url   TEXT,
+    created_at  TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (couple_id) REFERENCES couple(id),
+    FOREIGN KEY (user_id)   REFERENCES users(id)
+);
+COMMENT ON TABLE timeline IS '时光印记表';
+COMMENT ON COLUMN timeline.id IS '主键';
+COMMENT ON COLUMN timeline.couple_id IS '所属情侣ID';
+COMMENT ON COLUMN timeline.user_id IS '创建用户ID';
+COMMENT ON COLUMN timeline.event_date IS '事件日期';
+COMMENT ON COLUMN timeline.title IS '事件标题';
+COMMENT ON COLUMN timeline.description IS '事件详细描述';
+COMMENT ON COLUMN timeline.image_url IS '图片Base64';
+COMMENT ON COLUMN timeline.created_at IS '创建时间';
+CREATE INDEX IF NOT EXISTS idx_timeline_couple ON timeline (couple_id, event_date DESC);

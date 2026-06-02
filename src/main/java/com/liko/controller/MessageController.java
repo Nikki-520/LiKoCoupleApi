@@ -49,8 +49,8 @@ public class MessageController {
 
     @PutMapping("/{id}/read")
     public ApiResult<?> markRead(@PathVariable Long id, HttpServletRequest request) {
-        Long userId = (Long) request.getAttribute("userId");
-        boolean ok = messageService.markRead(id, userId);
+        Long coupleId = (Long) request.getAttribute("coupleId");
+        boolean ok = messageService.markRead(id, coupleId);
         return ok ? ApiResult.ok(null) : ApiResult.fail(400, "标记失败");
     }
 

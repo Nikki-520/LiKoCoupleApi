@@ -29,7 +29,7 @@
 
     <update id="markRead">
         UPDATE message SET is_read = TRUE
-        WHERE id = #{id} AND to_id = #{userId}
+        WHERE id = #{id} AND couple_id = #{coupleId}
     </update>
 
     <delete id="deleteById">

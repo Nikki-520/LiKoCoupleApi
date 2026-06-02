@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liko.mapper.TimelineMapper">
+
+    <select id="findByCoupleId" resultType="com.liko.model.Timeline">
+        SELECT t.id, t.couple_id, t.user_id, t.event_date, t.title, t.description,
+               t.image_url, t.created_at, u.nickname AS author
+        FROM timeline t
+        LEFT JOIN users u ON t.user_id = u.id
+        WHERE t.couple_id = #{coupleId}
+        ORDER BY t.event_date DESC
+    </select>
+
+    <insert id="insert" parameterType="com.liko.model.Timeline" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO timeline (couple_id, user_id, event_date, title, description, image_url)
+        VALUES (#{coupleId}, #{userId}, #{eventDate}, #{title}, #{description}, #{imageUrl})
+    </insert>
+
+    <delete id="deleteById">
+        DELETE FROM timeline WHERE id = #{id} AND user_id = #{userId}
+    </delete>
+
+</mapper>

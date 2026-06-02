@@ -1,6 +1,6 @@
 spring:
   datasource:
     url: jdbc:postgresql://124.222.0.94:5432/liko_couple
-    username: postgres
-    password: mysql_cnYGtN
+    username: root
+    password: password_ZN6ezh
     driver-class-name: org.postgresql.Driver
