@@ -1,5 +1,7 @@
 server:
   port: 18880
+  servlet:
+    context-path: /couple-api
   tomcat:
     max-http-form-post-size: 20MB
 

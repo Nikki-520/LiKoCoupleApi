@@ -16,6 +16,10 @@ public class JwtInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String path = request.getRequestURI();
+        String ctx = request.getContextPath();
+        if (ctx != null && !ctx.isEmpty()) {
+            path = path.substring(ctx.length());
+        }
 
         for (String wl : WHITELIST) {
             if (wl.equals(path)) {

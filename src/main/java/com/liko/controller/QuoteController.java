@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/quote")
+@RequestMapping("/couple-api/quote")
 public class QuoteController {
 
     private final QuoteService quoteService;

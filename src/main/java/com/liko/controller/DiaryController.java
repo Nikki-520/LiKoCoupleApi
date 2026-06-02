@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/diaries")
+@RequestMapping("/couple-api/diaries")
 public class DiaryController {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
