@@ -5,17 +5,17 @@
 
     <select id="findByUsername" resultType="com.liko.model.User">
         SELECT id, couple_id, username, nickname, role, password, created_at
-        FROM user WHERE username = #{username} LIMIT 1
+        FROM users WHERE username = #{username} LIMIT 1
     </select>
 
     <select id="findById" resultType="com.liko.model.User">
         SELECT id, couple_id, username, nickname, role, password, created_at
-        FROM user WHERE id = #{id}
+        FROM users WHERE id = #{id}
     </select>
 
     <select id="findOtherInCouple" resultType="com.liko.model.User">
         SELECT id, couple_id, username, nickname, role, password, created_at
-        FROM user WHERE couple_id = #{coupleId} AND id != #{excludeId} LIMIT 1
+        FROM users WHERE couple_id = #{coupleId} AND id != #{excludeId} LIMIT 1
     </select>
 
 </mapper>

@@ -7,20 +7,20 @@
         SELECT d.id, d.couple_id, d.user_id, d.diary_date, d.mood, d.content, d.images,
                d.created_at, d.updated_at, u.nickname AS author
         FROM diary d
-        LEFT JOIN user u ON d.user_id = u.id
+        LEFT JOIN users u ON d.user_id = u.id
         WHERE d.couple_id = #{coupleId}
         <if test="mood != null and mood != ''">
             AND d.mood = #{mood}
         </if>
         ORDER BY d.diary_date DESC, d.created_at DESC
-        LIMIT #{offset}, #{size}
+        LIMIT #{size} OFFSET #{offset}
     </select>
 
     <select id="findById" resultType="com.liko.model.Diary">
         SELECT d.id, d.couple_id, d.user_id, d.diary_date, d.mood, d.content, d.images,
                d.created_at, d.updated_at, u.nickname AS author
         FROM diary d
-        LEFT JOIN user u ON d.user_id = u.id
+        LEFT JOIN users u ON d.user_id = u.id
         WHERE d.id = #{id}
     </select>
 
@@ -31,7 +31,8 @@
 
     <update id="update" parameterType="com.liko.model.Diary">
         UPDATE diary
-        SET diary_date = #{diaryDate}, mood = #{mood}, content = #{content}, images = #{images}
+        SET diary_date = #{diaryDate}, mood = #{mood}, content = #{content},
+            images = #{images}, updated_at = CURRENT_TIMESTAMP
         WHERE id = #{id} AND user_id = #{userId}
     </update>
 

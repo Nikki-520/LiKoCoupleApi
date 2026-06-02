@@ -7,7 +7,7 @@
         SELECT w.id, w.couple_id, w.user_id, w.title, w.description,
                w.is_done, w.done_date, w.created_at, u.nickname AS author
         FROM wish w
-        LEFT JOIN user u ON w.user_id = u.id
+        LEFT JOIN users u ON w.user_id = u.id
         WHERE w.couple_id = #{coupleId}
         ORDER BY w.is_done ASC, w.created_at DESC
     </select>
@@ -16,13 +16,13 @@
         SELECT w.id, w.couple_id, w.user_id, w.title, w.description,
                w.is_done, w.done_date, w.created_at, u.nickname AS author
         FROM wish w
-        LEFT JOIN user u ON w.user_id = u.id
+        LEFT JOIN users u ON w.user_id = u.id
         WHERE w.id = #{id}
     </select>
 
     <insert id="insert" parameterType="com.liko.model.Wish" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO wish (couple_id, user_id, title, description, is_done)
-        VALUES (#{coupleId}, #{userId}, #{title}, #{description}, 0)
+        VALUES (#{coupleId}, #{userId}, #{title}, #{description}, FALSE)
     </insert>
 
     <update id="update" parameterType="com.liko.model.Wish">

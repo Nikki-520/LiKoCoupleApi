@@ -7,8 +7,8 @@
         SELECT m.id, m.couple_id, m.from_id, m.to_id, m.content, m.is_read, m.created_at,
                fu.nickname AS from_name, tu.nickname AS to_name
         FROM message m
-        LEFT JOIN user fu ON m.from_id = fu.id
-        LEFT JOIN user tu ON m.to_id = tu.id
+        LEFT JOIN users fu ON m.from_id = fu.id
+        LEFT JOIN users tu ON m.to_id = tu.id
         WHERE m.couple_id = #{coupleId}
         ORDER BY m.created_at DESC
     </select>
@@ -17,18 +17,18 @@
         SELECT m.id, m.couple_id, m.from_id, m.to_id, m.content, m.is_read, m.created_at,
                fu.nickname AS from_name, tu.nickname AS to_name
         FROM message m
-        LEFT JOIN user fu ON m.from_id = fu.id
-        LEFT JOIN user tu ON m.to_id = tu.id
+        LEFT JOIN users fu ON m.from_id = fu.id
+        LEFT JOIN users tu ON m.to_id = tu.id
         WHERE m.id = #{id}
     </select>
 
     <insert id="insert" parameterType="com.liko.model.Message" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO message (couple_id, from_id, to_id, content, is_read)
-        VALUES (#{coupleId}, #{fromId}, #{toId}, #{content}, 0)
+        VALUES (#{coupleId}, #{fromId}, #{toId}, #{content}, FALSE)
     </insert>
 
     <update id="markRead">
-        UPDATE message SET is_read = 1
+        UPDATE message SET is_read = TRUE
         WHERE id = #{id} AND to_id = #{userId}
     </update>
 
