@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 
 @RestController
-@RequestMapping("/couple-api/wishes")
+@RequestMapping("/api/wishes")
 public class WishController {
 
     private final WishService wishService;

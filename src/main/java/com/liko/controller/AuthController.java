@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/couple-api/auth")
+@RequestMapping("/api/auth")
 public class AuthController {
 
     private final AuthService authService;
